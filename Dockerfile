@@ -9,7 +9,8 @@ COPY requirements.txt .
 
 # Install dependencies with error handling
 RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install gunicorn
+    pip install gunicorn && \
+    pip install flask
 
 # Copy application code
 COPY main.py .
