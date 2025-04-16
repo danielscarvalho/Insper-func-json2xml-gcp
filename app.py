@@ -9,7 +9,7 @@ from flask import Flask, request, jsonify
 import functions_framework
 
 @functions_framework.http
-def json_to_xml(request):
+def json2xml(request):
     if request.method != 'POST':
         return jsonify({"error": "Please use POST method"}), 405
 
