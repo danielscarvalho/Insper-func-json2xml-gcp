@@ -1,5 +1,5 @@
 # Use a stable Python slim image
-FROM python:3.9-slim
+FROM python:3.14-slim
 
 # Set working directory
 WORKDIR /app
@@ -24,8 +24,8 @@ ENV FLASK_ENV=production
 ENV GUNICORN_LOGLEVEL=debug
 
 # Healthcheck to ensure container is responsive
-HEALTHCHECK --interval=120s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8080/ || exit 1
+HEALTHCHECK --interval=60s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:5000/ || exit 1
 
 # Run Gunicorn with debug logging
 CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--log-level=debug", "main:app"]
