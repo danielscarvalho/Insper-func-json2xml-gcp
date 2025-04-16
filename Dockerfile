@@ -11,7 +11,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
-COPY main.py .
+COPY app.py .
 
 # Install Gunicorn for production-grade WSGI server
 RUN pip install gunicorn
@@ -24,4 +24,4 @@ ENV PORT=8080
 ENV FLASK_ENV=production
 
 # Run Gunicorn to serve the Flask app
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "main:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app:app"]
