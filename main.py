@@ -7,11 +7,16 @@ import datetime
 import dicttoxml
 from flask import Flask, request, jsonify
 import functions_framework
+import logging
 
 @functions_framework.http
 def json2xml(request):
+    logging.basicConfig(level=logging.DEBUG)
+
     if request.method != 'POST':
         return jsonify({"error": "Please use POST method"}), 405
+
+
 
     try:
         # Parse JSON from the request
