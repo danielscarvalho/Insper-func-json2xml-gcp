@@ -15,17 +15,17 @@ RUN pip install --no-cache-dir -r requirements.txt && \
 # Copy application code
 COPY main.py .
 
-# Expose port 8080
-EXPOSE 8080
+# Expose port 5000
+EXPOSE 5000
 
 # Set environment variables
-ENV PORT=8080
+ENV PORT=5000
 ENV FLASK_ENV=production
 ENV GUNICORN_LOGLEVEL=debug
 
 # Healthcheck to ensure container is responsive
-# HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-#   CMD curl -f http://localhost:8080/ || exit 1
+HEALTHCHECK --interval=120s --timeout=3s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:8080/ || exit 1
 
 # Run Gunicorn with debug logging
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--log-level=debug", "main:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--log-level=debug", "main:app"]
