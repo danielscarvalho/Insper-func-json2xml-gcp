@@ -24,8 +24,8 @@ ENV FLASK_ENV=production
 ENV GUNICORN_LOGLEVEL=debug
 
 # Healthcheck to ensure container is responsive
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:8080/ || exit 1
+# HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+#   CMD curl -f http://localhost:8080/ || exit 1
 
 # Run Gunicorn with debug logging
 CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--log-level=debug", "main:app"]
