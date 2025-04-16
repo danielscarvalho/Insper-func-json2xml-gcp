@@ -1,31 +1,14 @@
-# Use a stable Python slim image
+# Use the official Python image.
+# https://hub.docker.com/_/python
 FROM python:3.14-slim
 
-# Set working directory
-WORKDIR /app
+# Copy local code to the container image.
+ENV APP_HOME /app
+WORKDIR $APP_HOME
+COPY . ./
 
-# Copy requirements first for caching
-COPY requirements.txt .
+# Install production dependencies.
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Install dependencies with error handling
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install gunicorn && \
-    pip install flask
-
-# Copy application code
-COPY main.py .
-
-# Expose port 5000
-EXPOSE 5000
-
-# Set environment variables
-ENV PORT=5000
-ENV FLASK_ENV=production
-ENV GUNICORN_LOGLEVEL=debug
-
-# Healthcheck to ensure container is responsive
-HEALTHCHECK --interval=60s --timeout=3s --start-period=5s --retries=3 \
-  CMD curl -f http://localhost:5000/ || exit 1
-
-# Run Gunicorn with debug logging
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--log-level=debug", "main:app"]
+# Run the web service on container startup.
+CMD ["functions-framework", "--target=json2xml"]
