@@ -14,3 +14,8 @@ docker build -t json2xml-function .
 docker run -p 5000:5000 -e PORT=5000 json2xml-function
 curl http://localhost:5000/json2xml
 ```
+
+References:
+- https://github.com/GoogleCloudPlatform/functions-framework-python
+- https://cloud.google.com/functions/docs/functions-framework?hl=pt-br
+
