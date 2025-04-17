@@ -15,6 +15,20 @@ docker run -p 5000:5000 -e PORT=5000 json2xml-function
 curl http://localhost:5000/json2xml
 ```
 
+Deploy from terminal with google CLI:
+
+```bash
+gcloud run deploy insper-func-json2xml-gcp \
+  --source https://github.com/danielscarvalho/Insper-func-json2xml-gcp.git \
+  --platform managed \
+  --region us-east1 \
+  --allow-unauthenticated \
+  --timeout 300 \
+  --gen2 \
+  --runtime python312
+  --project insper-deploy-2025
+```
+
 References:
 - https://github.com/GoogleCloudPlatform/functions-framework-python
 - https://cloud.google.com/functions/docs/functions-framework?hl=pt-br
