@@ -25,11 +25,25 @@ gcloud run deploy insper-func-json2xml-gcp \
   --allow-unauthenticated \
   --timeout 300 \
   --gen2 \
-  --runtime python312
+  --runtime python312 \
   --project insper-deploy-2025
+
+gcloud run deploy insper-func-json2xml-gcp \
+  --source . \
+  --platform managed \
+  --region us-east1 \
+  --allow-unauthenticated \
+  --timeout 300 \
+  --project insper-deploy-2025
+
+
 ```
+
+
+
 
 References:
 - https://github.com/GoogleCloudPlatform/functions-framework-python
 - https://cloud.google.com/functions/docs/functions-framework?hl=pt-br
+- https://medium.com/google-cloud/cloud-functions-to-cloud-run-e297aac28eb8
 
