@@ -10,5 +10,11 @@ COPY . ./
 # Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Expose port 8080 for Cloud Run
+EXPOSE 8080
+
+# Run the function using functions-framework
+CMD ["functions-framework", "--target", "json2xml", "--port", "8080"]
+
 # Run the web service on container startup.
-CMD ["functions-framework", "--target=json2xml"]
+#CMD ["functions-framework", "--target=json2xml"]
